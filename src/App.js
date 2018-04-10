@@ -7,7 +7,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      markdown: "# H1 \n ## H2 \n ### H3 \n #### H4 \n ##### H5 \n ###### H6"
+      markdown: "# Heading\n### Sub-Heading\n##### Even Smaller Heading\n\nOrdered list: \n1. Apples \n2. Bananas \n3. Pears\n\nUnordered list:\n* Apples \n* Bananas \n* Pears\n\n| Tables        | Are           | Cool  |\n| ------------- |:-------------:| -----:|\n| col 3 is      | right-aligned | $1600 |\n| col 2 is      | centered      |   $12 |\n| zebra stripes | are neat      |    $1 |"
     }
   }
 
@@ -25,9 +25,8 @@ class App extends Component {
             <br />
             <textarea
               id="markdown-textarea"  
-              rows="25"
-              cols="80"
               placeholder="#markdown language"
+              autofocus
               onChange={this.updateMarkdown.bind(this)}
               value={this.state.markdown}
             />
@@ -35,7 +34,7 @@ class App extends Component {
 
           <div className="preview">
             <h1>Preview</h1>
-              <div dangerouslySetInnerHTML = {{__html: Marked(this.state.markdown)}}>
+              <div id="preview-content" dangerouslySetInnerHTML = {{__html: Marked(this.state.markdown)}}>
               </div>
           </div>  
 
