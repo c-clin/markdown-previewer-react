@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Marked from 'marked';
 import './App.css';
 
 class App extends Component {
@@ -6,7 +7,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      markdown: ""
+      markdown: "# H1 \n ## H2 \n ### H3 \n #### H4 \n ##### H5 \n ###### H6"
     }
   }
 
@@ -19,21 +20,25 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <div className="markdown">
-            <label>Markdown</label>
+
+            <label><h1>Markdown</h1></label>
             <br />
             <textarea
-              id="markdown-textarea"
+              id="markdown-textarea"  
+              rows="25"
+              cols="80"
               placeholder="#markdown language"
               onChange={this.updateMarkdown.bind(this)}
               value={this.state.markdown}
-
             />
           </div>
 
           <div className="preview">
             <h1>Preview</h1>
-              {this.state.markdown}
-          </div>
+              <div dangerouslySetInnerHTML = {{__html: Marked(this.state.markdown)}}>
+              </div>
+          </div>  
+
         </div>
       </div>
     );
